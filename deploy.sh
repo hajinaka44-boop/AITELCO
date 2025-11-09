@@ -20,7 +20,7 @@ sleep 3
 # === Auto-refresh script dari GitHub ===
 if [ ! -f "deploy.sh" ]; then
   echo "📥 Mengunduh deploy.sh terbaru dari GitHub..."
-  curl -fsSL "https://raw.githubusercontent.com/hajinaka44-boop/AITELCO/main/deploy.sh" -o deploy.sh
+  curl -fsSL "https://github.com/hajinaka44-boop/AITELCO/blob/main/deploy.sh" -o deploy.sh
   chmod +x deploy.sh
 fi
 
@@ -43,6 +43,8 @@ if [ "$1" == "--update" ]; then
   exit 0
 fi
 
+clear
+
 # === Update & install basic tools ===
 pkg update -y && pkg upgrade -y
 pkg install -y git nodejs-lts python curl
@@ -50,6 +52,7 @@ pkg install -y git nodejs-lts python curl
 # === Install pm2 ===
 npm install -g pm2
 
+clear
 # === Clone / update repo ===
 if [ -d "$TARGET_DIR" ]; then
   echo "📁 Repo sudah ada, update dari GitHub..."
@@ -69,6 +72,8 @@ else
   npm install axios
 fi
 
+clear
+
 # === Wake lock Termux ===
 echo "🔒 Mengaktifkan wakelock (biar gak tidur)..."
 termux-wake-lock
@@ -79,22 +84,26 @@ if [ ! -f "config.json" ]; then
   cat <<EOF > config.json
 {
   "TELEGRAM_TOKEN": "ISI_TOKEN_BOTMU",
-  "TELEGRAM_CHAT_ID": "ISI_CHAT_ID_GRUPMU"
+  "TELEGRAM_CHAT_ID": "ISI_CHAT_ID_GRUP"
 }
 EOF
 fi
 echo ""
 echo "📝 Isi TELEGRAM_TOKEN dan CHAT_ID di config.json"
-sleep 1
+echo " KLIK CTRL + o ENTER UNTUK SAVE "
+echo " KLIK CTRL + x ENTER UNTUK CLOSE "
+sleep 3
 nano config.json
 
 # === Setup .cookie ===
 if [ ! -f ".cookie" ]; then
-  echo "PHPSESSID=ISI_COOKIE_DISINI" > .cookie
+  echo "PASTE_YOUR_COOKIE" > .cookie
 fi
 echo ""
-echo "📝 Masukkan COOKIE (contoh: PHPSESSID=xxxxx)"
-sleep 1
+echo "📝 Masukkan COOKIE (contoh: YOUR_COOKIE)"
+echo " KLIK CTRL + o ENTER UNTUK SAVE "
+echo " KLIK CTRL + x ENTER UNTUK CLOSE "
+sleep 3
 nano .cookie
 
 # === Jalankan pakai PM2 ===
@@ -106,12 +115,17 @@ pm2 start index.js --name $BOT_NAME
 pm2 save
 pm2 startup
 
+clear
+
 echo ""
 echo "====================================="
 echo "✅ BOT SUDAH AKTIF!"
-echo "💡 Log: pm2 logs $BOT_NAME"
+echo "⚡YOUR BOT NAME: $BOT_NAME"
+echo "💡 Logs: pm2 logs $BOT_NAME"
 echo "💡 Stop: pm2 stop $BOT_NAME"
 echo "💡 Restart: pm2 restart $BOT_NAME"
 echo "💡 Cek status: pm2 list"
 echo "💡 Update bot: ./deploy.sh --update"
+echo "====================================="
+echo " Dev: DrixAlexa CyberTeam"
 echo "====================================="
