@@ -16,11 +16,11 @@ echo "Mempermudah anda untuk Mendeploy bot"
 echo "hanya 1x klik bot auto run "
 echo "====================================="
 
-sleep 3
+sleep 5
 # === Auto-refresh script dari GitHub ===
 if [ ! -f "deploy.sh" ]; then
   echo "📥 Mengunduh deploy.sh terbaru dari GitHub..."
-  curl -fsSL "https://github.com/hajinaka44-boop/AITELCO/blob/main/deploy.sh" -o deploy.sh
+  curl -fsSL "https://raw.githubusercontent.com/hajinaka44-boop/AITELCO/refs/heads/main/deploy.sh" -o deploy.sh
   chmod +x deploy.sh
 fi
 
@@ -92,7 +92,7 @@ echo ""
 echo "📝 Isi TELEGRAM_TOKEN dan CHAT_ID di config.json"
 echo " KLIK CTRL + o ENTER UNTUK SAVE "
 echo " KLIK CTRL + x ENTER UNTUK CLOSE "
-sleep 3
+sleep 5
 nano config.json
 
 # === Setup .cookie ===
@@ -103,7 +103,7 @@ echo ""
 echo "📝 Masukkan COOKIE (contoh: YOUR_COOKIE)"
 echo " KLIK CTRL + o ENTER UNTUK SAVE "
 echo " KLIK CTRL + x ENTER UNTUK CLOSE "
-sleep 3
+sleep 5
 nano .cookie
 
 # === Jalankan pakai PM2 ===
