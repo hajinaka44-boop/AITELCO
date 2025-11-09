@@ -1,0 +1,27 @@
+{
+
+  "name": "united-sms-forwarder",
+
+  "version": "1.0.0",
+
+  "description": "Bot untuk forward SMS UnitedSMS ke Telegram (via data_smscdr.php)",
+
+  "main": "index.js",
+
+  "scripts": {
+
+    "start": "node index.js"
+
+  },
+
+  "dependencies": {
+
+    "axios": "^1.7.2"
+
+  },
+
+  "author": "DrixAlexa",
+
+  "license": "MIT"
+
+}
